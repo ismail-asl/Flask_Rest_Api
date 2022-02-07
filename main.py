@@ -14,7 +14,9 @@ class VideoModel(db.Model):
 	likes = db.Column(db.Integer, nullable=False)
 
 	def __repr__(self):
-		return f"Video(name = {name}, views = {views}, likes = {likes})"
+		return f"Video(name = {self.name}, views = {self.views}, likes = {self.likes})"
+
+# db.create_all()
 
 video_put_args = reqparse.RequestParser()
 video_put_args.add_argument("name", type=str, help="Name of the video is required", required=True)
@@ -73,8 +75,8 @@ class Video(Resource):
 
 
 	def delete(self, video_id):
-		abort_if_video_id_doesnt_exist(video_id)
-		del videos[video_id]
+		self.abort_if_video_id_doesnt_exist(video_id)
+		del self.videos[video_id]
 		return '', 204
 
 
