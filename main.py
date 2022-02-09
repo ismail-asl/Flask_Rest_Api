@@ -43,6 +43,7 @@ class Video(Resource):
 			abort(404, message="Could not find video with that id")
 		return result
 
+
 	@marshal_with(resource_fields)
 	def post(self):
 		args = video_put_args.parse_args()
@@ -50,6 +51,7 @@ class Video(Resource):
 		db.session.add(video)
 		db.session.commit()
 		return video, 201
+
 
 	@marshal_with(resource_fields)
 	def put(self, video_id):
@@ -62,6 +64,7 @@ class Video(Resource):
 		db.session.add(video)
 		db.session.commit()
 		return video, 201
+
 
 	@marshal_with(resource_fields)
 	def patch(self, video_id):
